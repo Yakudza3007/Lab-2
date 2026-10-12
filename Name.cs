@@ -1,12 +1,9 @@
 ﻿internal class Name
 {
-    // поля
     private string? surname;
     private string? firstName;
     private string? patronymic;
 
-    // конструкторы
-    // с параметрами
     public Name(string firstName)
     {
         this.firstName = firstName;
@@ -28,7 +25,6 @@
         this.patronymic = patronymic;
     }
     
-    // свойства
     public string? FirstName
     {
         get { return this.firstName; }
@@ -47,7 +43,6 @@
         set { this.patronymic = value; }
     }
     
-    // перегруженный метод
     public override string ToString()
     {
         string fullName = "";
