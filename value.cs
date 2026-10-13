@@ -17,7 +17,7 @@ internal class Checked
             }
             else
             {
-                Console.WriteLine("Ошибка ввода! Повторите: ");
+                Console.Write("\nОшибка ввода! Повторите: ");
                 input = Console.ReadLine();
             }
         }

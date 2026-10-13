@@ -11,6 +11,7 @@ internal class Program
             Console.WriteLine("\n0 - Выход из программы.");
             Console.WriteLine("1 - Имена.");
             Console.WriteLine("2 - Люди с именами.");
+            Console.WriteLine("3 - Люди с родителем.");
             int choice = c.ReadInt("Введите номер задания: ");
             switch (choice)
             {
@@ -39,6 +40,23 @@ internal class Program
                     Console.WriteLine(personOneFull);
                     Console.WriteLine(personTwoFull);
                     Console.WriteLine(personThreeFull);
+                    break;
+                
+                case 3:
+                    Console.WriteLine("\nЛюди с родителем:");
+                    Name parentOne = new Name("Чудов", "Иван");
+                    Name parentTwo = new Name("Чудов", "Петр");
+                    Name parentThree = new Name("Борис");
+                    People parentOneFull = new People(parentOne, 181);
+                    People parentTwoFull = new People(parentTwo, 182, parentOneFull);
+                    People parentThreeFull = new People(parentThree, 183, parentTwoFull);
+                    Console.WriteLine(parentOneFull);
+                    Console.WriteLine(parentTwoFull);
+                    Console.WriteLine(parentThreeFull);
+                    break;
+                
+                default:
+                    Console.WriteLine("\nТакого пункта в меню нет. Попробуйте еще раз.");
                     break;
             }
         }
