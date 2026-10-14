@@ -15,6 +15,7 @@ internal class Program
             Console.WriteLine("2 - Люди с именами.");
             Console.WriteLine("3 - Люди с родителем.");
             Console.WriteLine("4 - Ломаная.");
+            Console.WriteLine("5 - Ломаная без параметров.");
             int choice = c.ReadInt("Введите номер задания: ");
             switch (choice)
             {
@@ -75,6 +76,19 @@ internal class Program
                     polygonalOne.CoordinateY = 0;
                     Console.WriteLine($"Первая ломаная после сдвига: {lineOne}");
                     Console.WriteLine($"Вторая ломаная после сдвига: {lineTwo}");
+                    break;
+                
+                case 5:
+                    Console.WriteLine("\nЛоманая без параметров:");
+                    Polygonal empty =  new Polygonal();
+                    Console.WriteLine(empty);
+                    Point pointOne = new Point(1, 5);
+                    Point pointTwo = new Point(2, 6);
+                    Point pointThree = new Point(3, 8);
+                    Point pointFour = new Point(10, 20);
+                    Point[] arrayThree = new Point[] {pointOne, pointTwo, pointThree, pointFour};
+                    Polygonal lineThree = new Polygonal(arrayThree);
+                    Console.WriteLine($"Ломаная с указанием некоторого набора точек: {lineThree}");
                     break;
                 
                 default:

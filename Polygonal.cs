@@ -6,6 +6,11 @@
     {
         this.points = points;
     }
+
+    public Polygonal()
+    {
+        this.points = new Point[] { };
+    }
     
     public Point[] Points
     {
