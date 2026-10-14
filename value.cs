@@ -22,26 +22,4 @@ internal class Checked
             }
         }
     }
-    
-    public int NaturalReadInt(string promt)
-    {
-        Console.WriteLine(promt);
-        string? input = Console.ReadLine();
-        int result = 0;
-        while (true)
-        {
-            if (int.TryParse(input, out result) && result > 0)
-            {
-                return result;
-            }
-            else
-            {
-                Console.WriteLine("Ошибка ввода! Повторите: ");
-                input = Console.ReadLine();
-            }
-        }
-    }
-    // проверка на double
-    // проверка на bool
-    // проверка на string
 }

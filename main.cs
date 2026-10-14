@@ -16,6 +16,7 @@ internal class Program
             Console.WriteLine("3 - Люди с родителем.");
             Console.WriteLine("4 - Ломаная.");
             Console.WriteLine("5 - Ломаная без параметров.");
+            Console.WriteLine("6 - Длина ломаной.");
             int choice = c.ReadInt("Введите номер задания: ");
             switch (choice)
             {
@@ -89,6 +90,23 @@ internal class Program
                     Point[] arrayThree = new Point[] {pointOne, pointTwo, pointThree, pointFour};
                     Polygonal lineThree = new Polygonal(arrayThree);
                     Console.WriteLine($"Ломаная с указанием некоторого набора точек: {lineThree}");
+                    break;
+                
+                case 6:
+                    Console.WriteLine("\nЛоманая с добавлением точек:");
+                    Point p1 = new Point(1, 5);
+                    Point p2 = new Point(2, 8);
+                    Point p3 = new Point(5, 3);
+                    Polygonal line = new Polygonal(new Point[] { p1, p2, p3 });
+                    Console.WriteLine($"Ломаная: {line}");
+                    Console.WriteLine($"Длина: {line.Length():F2}");
+
+                    Point p4 = new Point(5, 15);
+                    Point p5 = new Point(8, 10);
+                    line.Add(new Point[] { p4, p5 });
+
+                    Console.WriteLine($"Ломаная после добавления: {line}");
+                    Console.WriteLine($"Длина после добавления: {line.Length():F2}");
                     break;
                 
                 default:
