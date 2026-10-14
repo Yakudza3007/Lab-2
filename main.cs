@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1;
+﻿using System.Globalization;
+
+namespace ConsoleApp1;
 
 internal class Program
 {
@@ -12,6 +14,7 @@ internal class Program
             Console.WriteLine("1 - Имена.");
             Console.WriteLine("2 - Люди с именами.");
             Console.WriteLine("3 - Люди с родителем.");
+            Console.WriteLine("4 - Ломаная.");
             int choice = c.ReadInt("Введите номер задания: ");
             switch (choice)
             {
@@ -53,6 +56,25 @@ internal class Program
                     Console.WriteLine(parentOneFull);
                     Console.WriteLine(parentTwoFull);
                     Console.WriteLine(parentThreeFull);
+                    break;
+                
+                case 4:
+                    Console.WriteLine("\nЛоманая:");
+                    Point polygonalOne = new Point(1, 5);
+                    Point polygonalTwo = new Point(2, 8);
+                    Point polygonalThree = new Point(5, 3);
+                    Point[] arrayOne = new Point[] { polygonalOne, polygonalTwo, polygonalThree };
+                    Polygonal lineOne = new Polygonal(arrayOne);
+                    Point polygonalMiddle = new Point(2, -5);
+                    Point polygonalTwoMiddle = new Point(4, -8);
+                    Point[] arrayTwo = new Point[] { polygonalOne, polygonalMiddle, polygonalTwoMiddle,  polygonalThree };
+                    Polygonal lineTwo = new Polygonal(arrayTwo);
+                    Console.WriteLine($"Первая ломаная: {lineOne}");
+                    Console.WriteLine($"Вторая ломаная: {lineTwo}");
+                    polygonalOne.CoordinateX = -2;
+                    polygonalOne.CoordinateY = 0;
+                    Console.WriteLine($"Первая ломаная после сдвига: {lineOne}");
+                    Console.WriteLine($"Вторая ломаная после сдвига: {lineTwo}");
                     break;
                 
                 default:
