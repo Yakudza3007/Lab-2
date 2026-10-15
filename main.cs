@@ -151,9 +151,14 @@ internal class Program
             Name name = ReadName();
             int height = ReadPositiveInt(c, "Рост (см): ");
 
-            chain[i] = previous == null
-                ? new People(name, height)
-                : new People(name, height, previous);
+            if (previous == null)
+            {
+                chain[i] = new People(name, height);
+            }
+            else
+            {
+                chain[i] = new People(name, height, previous);
+            }
 
             previous = chain[i];
         }

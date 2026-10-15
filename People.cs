@@ -2,58 +2,58 @@
 
 internal class People
 {
-    private Name name;
-    private int height;
-    private People? father;
+    private Name _name;
+    private int _height;
+    private People? _father;
 
     public People(Name name, int height)
     {
-        this.name = name;
-        this.height = height;
+        this._name = name;
+        this._height = height;
     }
     
     public People(Name name, int height, People? father)
     {
-        this.name = name;
-        this.height = height;
-        this.father = father;
+        this._name = name;
+        this._height = height;
+        this._father = father;
     }
     
     public Name Name
     {
-        get { return this.name; }
-        set { this.name = value; }
+        get { return this._name; }
+        set { this._name = value; }
     }
 
     public int Height
     {
-        get { return this.height; }
-        set { this.height = value; }
+        get { return this._height; }
+        set { this._height = value; }
     }
 
     public People? Father
     {
-        get { return this.father; }
-        set { this.father = value; }
+        get { return this._father; }
+        set { this._father = value; }
     }
     
     
     public override string ToString()
     {
-        if (this.father != null)
+        if (this._father != null)
         {
-            if (name.Surname == null && this.father.Name.Surname != null)
+            if (_name.Surname == null && this._father.Name.Surname != null)
             {
-                name.Surname = this.father.Name.Surname;
+                _name.Surname = this._father.Name.Surname;
             }
 
-            if (name.Patronymic == null && this.father.Name.FirstName != null)
+            if (_name.Patronymic == null && this._father.Name.FirstName != null)
             {
-                name.Patronymic = this.father.Name.FirstName + "ович";
+                _name.Patronymic = this._father.Name.FirstName + "ович";
             }
         }
         
-        return $"{this.name}, рост: {this.height}";  
+        return $"{this._name}, рост: {this._height}";  
         
     }
 }

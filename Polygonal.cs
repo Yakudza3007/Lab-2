@@ -1,35 +1,35 @@
 ﻿internal class Polygonal
 {
-    private Point[] points;
+    private Point[] _points;
 
     public Polygonal(Point[] points)
     {
-        this.points = points;
+        this._points = points;
     }
 
     public Polygonal()
     {
-        this.points = new Point[] { };
+        this._points = new Point[] { };
     }
     
     public Point[] Points
     {
-        get { return points; }
-        set { this.points = value; }
+        get { return _points; }
+        set { this._points = value; }
     }
     
     public void Add(Point[] newPoints)
     {
-        Point[] result = new Point[points.Length + newPoints.Length];
-        for (int i = 0; i < points.Length; i++)
+        Point[] result = new Point[_points.Length + newPoints.Length];
+        for (int i = 0; i < _points.Length; i++)
         {
-            result[i] = points[i];
+            result[i] = _points[i];
         }
         for (int i = 0; i < newPoints.Length; i++)
         {
-            result[points.Length + i] = newPoints[i];
+            result[_points.Length + i] = newPoints[i];
         }
-        points = result;
+        _points = result;
     }
     
     public void Add(Point newPoint)
@@ -40,10 +40,10 @@
     public double Length()
     {
         double sum = 0;
-        for (int i = 0; i < points.Length - 1; i++)
+        for (int i = 0; i < _points.Length - 1; i++)
         {
-            int dx = points[i + 1].CoordinateX - points[i].CoordinateX;
-            int dy = points[i + 1].CoordinateY - points[i].CoordinateY;
+            int dx = _points[i + 1].CoordinateX - _points[i].CoordinateX;
+            int dy = _points[i + 1].CoordinateY - _points[i].CoordinateY;
             sum += Math.Sqrt(dx * dx + dy * dy);
         }
         return sum;

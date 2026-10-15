@@ -1,70 +1,70 @@
 ﻿internal class Name
 {
-    private string? surname;
-    private string? firstName;
-    private string? patronymic;
+    private string? _surname;
+    private string? _firstName;
+    private string? _patronymic;
 
     public Name(string firstName)
     {
-        this.firstName = firstName;
-        this.surname = null;
-        this.patronymic = null;
+        this._firstName = firstName;
+        this._surname = null;
+        this._patronymic = null;
     }
 
     public Name(string surname, string firstName)
     {
-        this.firstName = firstName;
-        this.surname = surname;
-        this.patronymic = null;
+        this._firstName = firstName;
+        this._surname = surname;
+        this._patronymic = null;
     }
 
     public Name(string surname, string firstName, string patronymic)
     {
-        this.firstName = firstName;
-        this.surname = surname;
-        this.patronymic = patronymic;
+        this._firstName = firstName;
+        this._surname = surname;
+        this._patronymic = patronymic;
     }
     
     public string? FirstName
     {
-        get { return this.firstName; }
-        set { this.firstName = value; }
+        get { return this._firstName; }
+        set { this._firstName = value; }
     }
 
     public string? Surname
     {
-        get { return this.surname; }
-        set { this.surname = value; }
+        get { return this._surname; }
+        set { this._surname = value; }
     }
 
     public string? Patronymic
     {
-        get { return this.patronymic; }
-        set { this.patronymic = value; }
+        get { return this._patronymic; }
+        set { this._patronymic = value; }
     }
     
     public override string ToString()
     {
         string fullName = "";
-        if (surname != null)
+        if (_surname != null)
         {
-           fullName = surname; 
+           fullName = _surname; 
         }
 
         if (fullName != "")
         {
-            fullName += " " + firstName;
+            fullName += " " + _firstName;
 
         }
 
         else
         {
-            fullName =  firstName;
+            fullName =  _firstName;
         }
         
-        if (patronymic != null)
+        if (_patronymic != null)
         {
-            fullName += " " + patronymic;
+            fullName += " " + _patronymic;
         }
         return fullName;
     }
