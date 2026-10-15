@@ -8,52 +8,52 @@ internal class People
 
     public People(Name name, int height)
     {
-        this._name = name;
-        this._height = height;
+        _name = name;
+        _height = height;
     }
     
     public People(Name name, int height, People? father)
     {
-        this._name = name;
-        this._height = height;
-        this._father = father;
+        _name = name;
+        _height = height;
+        _father = father;
     }
     
     public Name Name
     {
-        get { return this._name; }
-        set { this._name = value; }
+        get { return _name; }
+        set { _name = value; }
     }
 
     public int Height
     {
-        get { return this._height; }
-        set { this._height = value; }
+        get { return _height; }
+        set { _height = value; }
     }
 
     public People? Father
     {
-        get { return this._father; }
-        set { this._father = value; }
+        get { return _father; }
+        set { _father = value; }
     }
     
     
     public override string ToString()
     {
-        if (this._father != null)
+        if (_father != null)
         {
-            if (_name.Surname == null && this._father.Name.Surname != null)
+            if (_name.Surname == null && _father.Name.Surname != null)
             {
-                _name.Surname = this._father.Name.Surname;
+                _name.Surname = _father.Name.Surname;
             }
 
-            if (_name.Patronymic == null && this._father.Name.FirstName != null)
+            if (_name.Patronymic == null && _father.Name.FirstName != null)
             {
-                _name.Patronymic = this._father.Name.FirstName + "ович";
+                _name.Patronymic = _father.Name.FirstName + "ович";
             }
         }
         
-        return $"{this._name}, рост: {this._height}";  
+        return $"{_name}, рост: {_height}";  
         
     }
 }

@@ -4,18 +4,18 @@
 
     public Polygonal(Point[] points)
     {
-        this._points = points;
+        _points = points;
     }
 
     public Polygonal()
     {
-        this._points = new Point[] { };
+        _points = new Point[] { };
     }
     
     public Point[] Points
     {
         get { return _points; }
-        set { this._points = value; }
+        set { _points = value; }
     }
     
     public void Add(Point[] newPoints)

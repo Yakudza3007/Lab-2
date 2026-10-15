@@ -6,41 +6,41 @@
 
     public Name(string firstName)
     {
-        this._firstName = firstName;
-        this._surname = null;
-        this._patronymic = null;
+        _firstName = firstName;
+        _surname = null;
+        _patronymic = null;
     }
 
     public Name(string surname, string firstName)
     {
-        this._firstName = firstName;
-        this._surname = surname;
-        this._patronymic = null;
+        _firstName = firstName;
+        _surname = surname;
+        _patronymic = null;
     }
 
     public Name(string surname, string firstName, string patronymic)
     {
-        this._firstName = firstName;
-        this._surname = surname;
-        this._patronymic = patronymic;
+        _firstName = firstName;
+        _surname = surname;
+        _patronymic = patronymic;
     }
     
     public string? FirstName
     {
-        get { return this._firstName; }
-        set { this._firstName = value; }
+        get { return _firstName; }
+        set { _firstName = value; }
     }
 
     public string? Surname
     {
-        get { return this._surname; }
-        set { this._surname = value; }
+        get { return _surname; }
+        set { _surname = value; }
     }
 
     public string? Patronymic
     {
-        get { return this._patronymic; }
-        set { this._patronymic = value; }
+        get { return _patronymic; }
+        set { _patronymic = value; }
     }
     
     public override string ToString()
