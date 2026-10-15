@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace ConsoleApp1;
+﻿namespace ConsoleApp1;
 
 internal class Program
 {
@@ -16,103 +14,224 @@ internal class Program
             Console.WriteLine("3 - Люди с родителем.");
             Console.WriteLine("4 - Ломаная.");
             Console.WriteLine("5 - Ломаная без параметров.");
-            Console.WriteLine("6 - Длина ломаной.");
-            int choice = c.ReadInt("Введите номер задания: ");
+            Console.WriteLine("6 - Ломаная: добавление точек и длина.");
+
+            int choice = ReadIntInRange(c, "Введите номер задания: ", 0, 6);
+
             switch (choice)
             {
                 case 0:
                     Console.WriteLine("\nРабота завершена.");
                     return;
-                    
-                case 1:
-                    Console.WriteLine("\nИмена:");
-                    Name peopleOne = new Name("Клеопатра");
-                    Name peopleTwo = new Name("Пушкин", "Александр", "Сергеевич");
-                    Name peopleThree = new Name("Маяковский", "Владимир");
-                    Console.WriteLine(peopleOne);
-                    Console.WriteLine(peopleTwo);
-                    Console.WriteLine(peopleThree);
-                    break;
-                
-                case 2:
-                    Console.WriteLine("\nЛюди с именем:");
-                    Name personOne = new Name("Клеопатра");
-                    People personOneFull = new People(personOne, 152);
-                    Name personTwo = new Name("Пушкин", "Александр", "Сергеевич");
-                    People personTwoFull = new People(personTwo, 167);
-                    Name personThree = new Name("Маяковский", "Владимир");
-                    People personThreeFull = new People(personThree, 189);
-                    Console.WriteLine(personOneFull);
-                    Console.WriteLine(personTwoFull);
-                    Console.WriteLine(personThreeFull);
-                    break;
-                
-                case 3:
-                    Console.WriteLine("\nЛюди с родителем:");
-                    Name parentOne = new Name("Чудов", "Иван");
-                    Name parentTwo = new Name("Чудов", "Петр");
-                    Name parentThree = new Name("Борис");
-                    People parentOneFull = new People(parentOne, 181);
-                    People parentTwoFull = new People(parentTwo, 182, parentOneFull);
-                    People parentThreeFull = new People(parentThree, 183, parentTwoFull);
-                    Console.WriteLine(parentOneFull);
-                    Console.WriteLine(parentTwoFull);
-                    Console.WriteLine(parentThreeFull);
-                    break;
-                
-                case 4:
-                    Console.WriteLine("\nЛоманая:");
-                    Point polygonalOne = new Point(1, 5);
-                    Point polygonalTwo = new Point(2, 8);
-                    Point polygonalThree = new Point(5, 3);
-                    Point[] arrayOne = new Point[] { polygonalOne, polygonalTwo, polygonalThree };
-                    Polygonal lineOne = new Polygonal(arrayOne);
-                    Point polygonalMiddle = new Point(2, -5);
-                    Point polygonalTwoMiddle = new Point(4, -8);
-                    Point[] arrayTwo = new Point[] { polygonalOne, polygonalMiddle, polygonalTwoMiddle,  polygonalThree };
-                    Polygonal lineTwo = new Polygonal(arrayTwo);
-                    Console.WriteLine($"Первая ломаная: {lineOne}");
-                    Console.WriteLine($"Вторая ломаная: {lineTwo}");
-                    polygonalOne.CoordinateX = -2;
-                    polygonalOne.CoordinateY = 0;
-                    Console.WriteLine($"Первая ломаная после сдвига: {lineOne}");
-                    Console.WriteLine($"Вторая ломаная после сдвига: {lineTwo}");
-                    break;
-                
-                case 5:
-                    Console.WriteLine("\nЛоманая без параметров:");
-                    Polygonal empty =  new Polygonal();
-                    Console.WriteLine(empty);
-                    Point pointOne = new Point(1, 5);
-                    Point pointTwo = new Point(2, 6);
-                    Point pointThree = new Point(3, 8);
-                    Point pointFour = new Point(10, 20);
-                    Point[] arrayThree = new Point[] {pointOne, pointTwo, pointThree, pointFour};
-                    Polygonal lineThree = new Polygonal(arrayThree);
-                    Console.WriteLine($"Ломаная с указанием некоторого набора точек: {lineThree}");
-                    break;
-                
-                case 6:
-                    Console.WriteLine("\nЛоманая с добавлением точек:");
-                    Point p1 = new Point(1, 5);
-                    Point p2 = new Point(2, 8);
-                    Point p3 = new Point(5, 3);
-                    Polygonal line = new Polygonal(new Point[] { p1, p2, p3 });
-                    Console.WriteLine($"Ломаная: {line}");
-                    Console.WriteLine($"Длина: {line.Length():F2}");
-
-                    Point p4 = new Point(5, 15);
-                    Point p5 = new Point(8, 10);
-                    line.Add(new Point[] { p4, p5 });
-
-                    Console.WriteLine($"Ломаная после добавления: {line}");
-                    Console.WriteLine($"Длина после добавления: {line.Length():F2}");
-                    break;
-                
-                default:
-                    Console.WriteLine("\nТакого пункта в меню нет. Попробуйте еще раз.");
-                    break;
+                case 1: Task1(c); break;
+                case 2: Task2(c); break;
+                case 3: Task3(c); break;
+                case 4: Task4(c); break;
+                case 5: Task5(c); break;
+                case 6: Task6(c); break;
             }
         }
+    }
+
+
+    private static int ReadIntInRange(Checked c, string prompt, int min, int max)
+    {
+        while (true)
+        {
+            int value = c.ReadInt(prompt);
+            if (value >= min && value <= max)
+                return value;
+            Console.WriteLine($"Ошибка: число должно быть от {min} до {max}. Повторите ввод.");
+        }
+    }
+
+    private static int ReadPositiveInt(Checked c, string prompt)
+    {
+        return ReadIntInRange(c, prompt, 1, int.MaxValue);
+    }
+
+    private static int ReadNonNegativeInt(Checked c, string prompt)
+    {
+        return ReadIntInRange(c, prompt, 0, int.MaxValue);
+    }
+
+    private static string? ReadOptionalString(string prompt)
+    {
+        Console.Write(prompt);
+        string? input = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(input))
+            return null;
+        return input.Trim();
+    }
+
+    private static string ReadRequiredString(string prompt)
+    {
+        while (true)
+        {
+            Console.Write(prompt);
+            string? input = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(input))
+                return input.Trim();
+            Console.WriteLine("Ошибка: поле не может быть пустым. Повторите ввод.");
+        }
+    }
+
+    private static Name ReadName()
+    {
+        string? surname = ReadOptionalString("Фамилия (Enter — пропустить): ");
+        string firstName = ReadRequiredString("Имя: ");
+        string? patronymic = ReadOptionalString("Отчество (Enter — пропустить): ");
+
+        if (patronymic != null)
+            return new Name(surname ?? "", firstName, patronymic);
+        if (surname != null)
+            return new Name(surname, firstName);
+        return new Name(firstName);
+    }
+
+    private static Point ReadPoint(Checked c, string label)
+    {
+        Console.WriteLine($"Точка {label}:");
+        int x = c.ReadInt("  X = ");
+        int y = c.ReadInt("  Y = ");
+        return new Point(x, y);
+    }
+
+
+    private static void Task1(Checked c)
+    {
+        Console.WriteLine("\n=== Задание 1: Имена ===");
+        int count = ReadPositiveInt(c, "Сколько имён создать? ");
+        Name[] names = new Name[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine($"\nИмя #{i + 1}:");
+            names[i] = ReadName();
+        }
+
+        Console.WriteLine("\nСозданные имена:");
+        foreach (Name n in names)
+            Console.WriteLine(n);
+    }
+
+    private static void Task2(Checked c)
+    {
+        Console.WriteLine("\n=== Задание 2: Люди с именем ===");
+        int count = ReadPositiveInt(c, "Сколько людей создать? ");
+        People[] people = new People[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine($"\nЧеловек #{i + 1}:");
+            Name name = ReadName();
+            int height = ReadPositiveInt(c, "Рост (см): ");
+            people[i] = new People(name, height);
+        }
+
+        Console.WriteLine("\nСозданные люди:");
+        foreach (People p in people)
+            Console.WriteLine(p);
+    }
+
+    private static void Task3(Checked c)
+    {
+        Console.WriteLine("\n=== Задание 3: Люди с родителем ===");
+        int count = ReadPositiveInt(c, "Сколько поколений ввести? ");
+        People[] chain = new People[count];
+        People? previous = null;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (previous == null)
+                Console.WriteLine($"\nПоколение #{i + 1} (без отца):");
+            else
+                Console.WriteLine($"\nПоколение #{i + 1} (отец — {previous.Name}):");
+
+            Name name = ReadName();
+            int height = ReadPositiveInt(c, "Рост (см): ");
+
+            chain[i] = previous == null
+                ? new People(name, height)
+                : new People(name, height, previous);
+
+            previous = chain[i];
+        }
+
+        Console.WriteLine("\nСозданная цепочка:");
+        foreach (People p in chain)
+            Console.WriteLine(p);
+    }
+
+    private static void Task4(Checked c)
+    {
+        Console.WriteLine("\n=== Задание 4: Ломаная ===");
+
+        Console.WriteLine("\nПервая ломаная:");
+        Point start = ReadPoint(c, "начала");
+        Point mid = ReadPoint(c, "середины первой ломаной");
+        Point end = ReadPoint(c, "конца");
+
+        Polygonal lineOne = new Polygonal(new Point[] { start, mid, end });
+
+        Console.WriteLine("\nВторая ломаная (начало и конец — общие с первой):");
+        int extraCount = ReadNonNegativeInt(c, "Сколько серединных точек? ");
+        Point[] arrayTwo = new Point[extraCount + 2];
+        arrayTwo[0] = start;
+        for (int i = 0; i < extraCount; i++)
+            arrayTwo[i + 1] = ReadPoint(c, $"середины #{i + 1}");
+        arrayTwo[extraCount + 1] = end;
+
+        Polygonal lineTwo = new Polygonal(arrayTwo);
+
+        Console.WriteLine("\nДо сдвига:");
+        Console.WriteLine($"Первая ломаная: {lineOne}");
+        Console.WriteLine($"Вторая ломаная: {lineTwo}");
+
+        Console.WriteLine("\nСдвигаем начало первой ломаной.");
+        start.CoordinateX = c.ReadInt("Новый X начала: ");
+        start.CoordinateY = c.ReadInt("Новый Y начала: ");
+
+        Console.WriteLine("\nПосле сдвига:");
+        Console.WriteLine($"Первая ломаная: {lineOne}");
+        Console.WriteLine($"Вторая ломаная: {lineTwo}");
+    }
+
+    private static void Task5(Checked c)
+    {
+        Console.WriteLine("\n=== Задание 5: Ломаная без параметров ===");
+        Polygonal empty = new Polygonal();
+        Console.WriteLine($"Пустая ломаная: {empty}");
+
+        Console.WriteLine("\nСоздадим ломаную с точками.");
+        int count = ReadPositiveInt(c, "Сколько точек? ");
+        Point[] points = new Point[count];
+        for (int i = 0; i < count; i++)
+            points[i] = ReadPoint(c, $"#{i + 1}");
+
+        Polygonal line = new Polygonal(points);
+        Console.WriteLine($"Ломаная: {line}");
+    }
+
+    private static void Task6(Checked c)
+    {
+        Console.WriteLine("\n=== Задание 6: Добавление точек и длина ===");
+        int count = ReadPositiveInt(c, "Сколько точек у ломаной изначально? ");
+        Point[] points = new Point[count];
+        for (int i = 0; i < count; i++)
+            points[i] = ReadPoint(c, $"#{i + 1}");
+
+        Polygonal line = new Polygonal(points);
+        Console.WriteLine($"\nЛоманая: {line}");
+        Console.WriteLine($"Длина: {line.Length():F2}");
+
+        int addCount = ReadPositiveInt(c, "\nСколько точек добавить? ");
+        Point[] newPoints = new Point[addCount];
+        for (int i = 0; i < addCount; i++)
+            newPoints[i] = ReadPoint(c, $"новая #{i + 1}");
+
+        line.Add(newPoints);
+        Console.WriteLine($"\nЛоманая: {line}");
+        Console.WriteLine($"Длина после добавления: {line.Length():F2}");
     }
 }
