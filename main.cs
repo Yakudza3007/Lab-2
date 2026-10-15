@@ -33,14 +33,16 @@ internal class Program
         }
     }
 
-
     private static int ReadIntInRange(Checked c, string prompt, int min, int max)
     {
         while (true)
         {
             int value = c.ReadInt(prompt);
             if (value >= min && value <= max)
+            {
                 return value;
+            }
+
             Console.WriteLine($"Ошибка: число должно быть от {min} до {max}. Повторите ввод.");
         }
     }
@@ -60,7 +62,10 @@ internal class Program
         Console.Write(prompt);
         string? input = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(input))
+        {
             return null;
+        }
+
         return input.Trim();
     }
 
@@ -71,7 +76,10 @@ internal class Program
             Console.Write(prompt);
             string? input = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(input))
+            {
                 return input.Trim();
+            }
+
             Console.WriteLine("Ошибка: поле не может быть пустым. Повторите ввод.");
         }
     }
@@ -83,9 +91,15 @@ internal class Program
         string? patronymic = ReadOptionalString("Отчество (Enter — пропустить): ");
 
         if (patronymic != null)
+        {
             return new Name(surname ?? "", firstName, patronymic);
+        }
+
         if (surname != null)
+        {
             return new Name(surname, firstName);
+        }
+
         return new Name(firstName);
     }
 
@@ -96,7 +110,6 @@ internal class Program
         int y = c.ReadInt("  Y = ");
         return new Point(x, y);
     }
-
 
     private static void Task1(Checked c)
     {
@@ -144,9 +157,13 @@ internal class Program
         for (int i = 0; i < count; i++)
         {
             if (previous == null)
+            {
                 Console.WriteLine($"\nПоколение #{i + 1} (без отца):");
+            }
             else
+            {
                 Console.WriteLine($"\nПоколение #{i + 1} (отец — {previous.Name}):");
+            }
 
             Name name = ReadName();
             int height = ReadPositiveInt(c, "Рост (см): ");
